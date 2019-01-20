@@ -16,12 +16,39 @@ db.once('open', function() {
 db.on('error', function(err) {
     console.log(err)
 })
+const dotenv = require('dotenv')
+const result = dotenv.config()
 
-//init app
+if (result.error) {
+    throw result.error
+}
+
+//init app 
 const app = express();
 
 //bring in models
 let testUser = require('./models/testUser')
+    //init oauth
+    // const OAuthServer = require("express-oauth-server");
+    // const oauth = new OAuthServer({
+    //     model: Model
+    // });
+
+// app.get("/oauth/authorize", function (req, res) {
+//        res.render('index', {
+//            title: 'Hello',
+//            users: users
+//        });
+// });
+// app.post("/oauth/authorize", oauth.authorize());
+// app.post("/oauth/token", oauth.token());
+
+// https: //api.pinterest.com/oauth/?
+//     response_type = code &
+//     redirect_uri = https: //mywebsite.com/connect/pinterest/&
+//     client_id = 12345 &
+//     scope = read_public, write_public &
+//     state = 768 uyFys
 
 //views
 app.set('views', path.join(__dirname, 'views'));
